@@ -5,6 +5,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
 
 const useStyles = makeStyles(theme => ({
@@ -20,6 +22,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function ButtonAppBar() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  function handleClick(event) {
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
+
   const classes = useStyles();
 
   return (
@@ -27,6 +39,9 @@ function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <IconButton
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
             edge="start"
             className={classes.menuButton}
             color="inherit"
@@ -39,6 +54,17 @@ function ButtonAppBar() {
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClose}>Torneos</MenuItem>
+          <MenuItem onClick={handleClose}>My account</MenuItem>
+          <MenuItem onClick={handleClose}>Logout</MenuItem>
+        </Menu>
       </AppBar>
     </div>
   );

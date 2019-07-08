@@ -1,70 +1,56 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
 import { verTorneos } from "../redux/actions/torneos";
+import Load from "../components/load";
+import Card from "../components/cards";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
+  container: {
+    marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(6)
+  },
+
   card: {
     maxWidth: 345
   },
   media: {
     height: 140
   }
-});
+}));
 
-const Torneos = (props) => {
+const Torneos = props => {
+  useEffect(() => {
+    props.verTorneos();
+  }, []);
+
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-    </Card>
+    <Container className={classes.container} maxWidth="lg">
+      {props.cargando ? (
+        <Load />
+      ) : (
+        <Card loop={props.torneos} card={classes.card} media={classes.media} />
+      )}
+    </Container>
   );
 };
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return {
     verTorneos: () => {
       dispatch(verTorneos());
     }
   };
-}
+};
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
-    cargando: state.cargando,
-    torneos: state.torneos
+    cargando: state.torneos.cargando,
+    torneos: state.torneos.torneos
   };
-}
+};
 
 export default connect(
   mapStateToProps,

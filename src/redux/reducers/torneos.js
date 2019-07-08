@@ -1,5 +1,5 @@
 import {
-    VER_TORNEOS, CARGAR_DATOS
+    VER_TORNEOS, CARGAR_DATOS_TORNEO
   } from "../action-types";
   
   const initialState = {
@@ -9,7 +9,7 @@ import {
   
   function reducer(state = initialState, action) {
     switch (action.type) {
-      case CARGAR_DATOS:
+      case CARGAR_DATOS_TORNEO:
         return { ...state, cargando: !state.cargando };
       case VER_TORNEOS:
         return Object.assign(

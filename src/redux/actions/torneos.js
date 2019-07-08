@@ -1,13 +1,13 @@
-import { VER_ARBITROS, CARGAR_DATOS } from "../action-types";
+import { VER_TORNEOS, CARGAR_DATOS } from "../action-types";
 
-export function listaArbitros() {
+export function verTorneos() {
   return function(dispatch) {
     dispatch({ type: CARGAR_DATOS });
-    return fetch("https://akabab.github.io/superhero-api/api/all.json")
+    return fetch("http://127.0.0.1:8000/api/verTorneos")
       .then(response => response.json())
       .then(json => {
         return dispatch({
-          type: VER_ARBITROS,
+          type: VER_TORNEOS,
           payload: json
         });
       });

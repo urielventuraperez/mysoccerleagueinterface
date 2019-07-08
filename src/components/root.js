@@ -16,4 +16,4 @@ Root.propTypes = {
   store: PropTypes.object.isRequired
 }
 
-export default Root
+export default Root;

@@ -41,7 +41,7 @@ export default function ComplexGrid() {
             <ButtonBase className={classes.image}>
               <img
                 className={classes.img}
-                alt="complex"
+                alt="image"
                 src="/static/images/grid/complex.jpg"
               />
             </ButtonBase>
@@ -63,11 +63,11 @@ export default function ComplexGrid() {
                 />
                 <TextField
                   id="outlined-email-input"
-                  label="Email"
+                  label="Password"
                   className={classes.textField}
                   type="password"
-                  name="email"
-                  autoComplete="email"
+                  name="password"
+                  autoComplete="password"
                   margin="normal"
                   variant="outlined"
                 />

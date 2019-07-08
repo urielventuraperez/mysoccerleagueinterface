@@ -1,14 +1,17 @@
 import React from "react";
+import Box from '@material-ui/core/Box';
 import BottomNavigation from "../components/bottomNavigation";
 import TopNavigation from "../components/topNavigation";
+import Login from "../pages/login";
 
-const Container = () => {
+const MainContainer = () => {
   return (
-   <div>
+   <Box>
        <TopNavigation />
+       <Login />
        <BottomNavigation />
-   </div>   
+   </Box>   
   );
 };
 
-export default Container;
+export default MainContainer;

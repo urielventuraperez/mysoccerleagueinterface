@@ -1,6 +1,6 @@
 import React from "react";
-import MyTheme from './theme';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import MyTheme from "./theme";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import Container from "./containers";
 
 function App() {

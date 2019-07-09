@@ -15,7 +15,7 @@ import {
         return Object.assign(
           { ...state, cargando: false },
           {
-            torneos: [...state.torneos.concat(action.payload)]
+            torneos: action.payload
           }
         );
       default:

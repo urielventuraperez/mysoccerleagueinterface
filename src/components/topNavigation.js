@@ -4,10 +4,10 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuIcon from "@material-ui/icons/Menu";
+import { Link } from "react-router-dom";
+import IconButton from '@material-ui/core/IconButton';
+import FirstPage from '@material-ui/icons/FirstPage';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,51 +22,42 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function ButtonAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  function handleClick(event) {
-    setAnchorEl(event.currentTarget);
-  }
-
-  function handleClose() {
-    setAnchorEl(null);
-  }
-
   const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <React.Fragment className={classes.root}>
+      <CssBaseline />
       <AppBar position="static">
         <Toolbar>
           <IconButton
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="Menu"
+            component={ Link }
+            to="/"
           >
-            <MenuIcon />
+            <FirstPage />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button
+            color="inherit"
+            component={ Link }
+            to="/torneos"
+          >
+            Torneos
+          </Button>
+          <Button
+            color="inherit"
+            component={ Link }
+            to='login'
+          >
+            Login
+          </Button>
         </Toolbar>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={handleClose}>Torneos</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu>
       </AppBar>
-    </div>
+    </React.Fragment>
   );
 }
 

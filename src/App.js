@@ -1,18 +1,26 @@
 import React from "react";
 import MyTheme from "./theme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import Container from "./containers";
-import { Provider } from "react-redux";
-import store from "../src/redux/store";
+import PropTypes from "prop-types";
+import { ConnectedRouter } from "connected-react-router";
+import routes from "./routes/";
+import BottomNavigation from "./components/bottomNavigation";
+import TopNavigation from "./components/topNavigation";
 
-function App() {
+const App = ({ history }) => {
   return (
-    <Provider store={store}>
-    <MuiThemeProvider theme={MyTheme}>
-      <Container />
-    </MuiThemeProvider>
-    </Provider>
+    <ConnectedRouter history={history}>
+      <MuiThemeProvider theme={MyTheme}>
+          <TopNavigation />
+          {routes}
+          <BottomNavigation />
+      </MuiThemeProvider>
+    </ConnectedRouter>
   );
-}
+};
+
+App.propTypes = {
+  history: PropTypes.object
+};
 
 export default App;

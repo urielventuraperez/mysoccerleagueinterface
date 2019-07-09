@@ -41,7 +41,7 @@ export default function ComplexGrid() {
             <ButtonBase className={classes.image}>
               <img
                 className={classes.img}
-                alt="image"
+                alt="random"
                 src="/static/images/grid/complex.jpg"
               />
             </ButtonBase>

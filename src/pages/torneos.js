@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   card: {
-    maxWidth: 345
+    maxWidth: '100%'
   },
   media: {
     height: 140
@@ -28,7 +28,7 @@ const Torneos = props => {
   const classes = useStyles();
   return (
     <Container className={classes.container} maxWidth="lg">
-      {props.cargando ? (
+      {props.cargandoTorneo ? (
         <Load />
       ) : (
         <Card loop={props.torneos} card={classes.card} media={classes.media} />
@@ -47,7 +47,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    cargando: state.torneos.cargando,
+    cargandoTorneo: state.torneos.cargandoTorneo,
     torneos: state.torneos.torneos
   };
 };

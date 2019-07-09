@@ -14,7 +14,7 @@ const CardTorneos = props => {
     <Grid container spacing={3}>
       {props.loop.map(l => {
         return (
-          <Grid key={l.id} item xs={12} md={4}>
+          <Grid key={l.id} item xs={12} md={12}>
             <Card className={props.card}>
               <CardActionArea>
                 <CardMedia
@@ -36,7 +36,9 @@ const CardTorneos = props => {
               <CardActions>
                 <Button
                   component={Link}
-                  to={`/torneo/${l.id}/equipos`}
+                  to={{pathname: `/torneo/${l.id}/equipos`,   state: { 
+                    cardNombre: l.nombre
+                  }}}
                   size="small"
                   color="primary"
                 >

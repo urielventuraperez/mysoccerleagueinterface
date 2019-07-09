@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
 import { verTorneos } from "../redux/actions/torneos";
 import Load from "../components/load";
-import Card from "../components/cards";
+import CardTorneos from "../components/cardsTorneos";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -31,7 +31,7 @@ const Torneos = props => {
       {props.cargandoTorneo ? (
         <Load />
       ) : (
-        <Card loop={props.torneos} card={classes.card} media={classes.media} />
+        <CardTorneos loop={props.torneos} card={classes.card} media={classes.media} />
       )}
     </Container>
   );

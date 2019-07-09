@@ -7,14 +7,15 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const CardTorneos = props => {
   return (
     <Grid container spacing={3}>
       {props.loop.map(l => {
         return (
-          <Grid item xs={12} md={4}>
-            <Card key={l.id} className={props.card}>
+          <Grid key={l.id} item xs={12} md={4}>
+            <Card className={props.card}>
               <CardActionArea>
                 <CardMedia
                   className={props.media}
@@ -33,8 +34,12 @@ const CardTorneos = props => {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary" />
-                <Button size="small" color="primary">
+                <Button
+                  component={Link}
+                  to={`/torneo/${l.id}/equipos`}
+                  size="small"
+                  color="primary"
+                >
                   Learn More
                 </Button>
               </CardActions>

@@ -24,9 +24,9 @@ const useStyles = makeStyles(theme => ({
 function ButtonAppBar() {
   const classes = useStyles();
   return (
-    <React.Fragment className={classes.root}>
+    <React.Fragment>
       <CssBaseline />
-      <AppBar position="static">
+      <AppBar className={classes.root} position="static">
         <Toolbar>
           <IconButton
             edge="start"

@@ -9,3 +9,6 @@ export const VER_ARBITROS = "VER_ARBITROS";
 //Torneos
 export const VER_TORNEOS = "VER_TORNEOS";
 export const VER_EQUIPOS_TORNEO = "VER_EQUIPOS_TORNEO";
+
+//Equipos
+export const VER_EQUIPO = "VER_EQUIPO";

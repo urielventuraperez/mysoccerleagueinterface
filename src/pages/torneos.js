@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { verTorneos } from "../redux/actions/torneos";
 import Load from "../components/load";
 import CardTorneos from "../components/cardsTorneos";
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -31,7 +32,9 @@ const Torneos = props => {
       {props.cargandoTorneo ? (
         <Load />
       ) : (
+        <Fade direction="up" in={!props.cargandoTorneo} mountOnEnter unmountOnExit>
         <CardTorneos loop={props.torneos} card={classes.card} media={classes.media} />
+        </Fade> 
       )}
     </Container>
   );

@@ -4,40 +4,18 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import RemoveRedEye from "@material-ui/icons/RemoveRedEye";
 import ShareIcon from "@material-ui/icons/Share";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Grid from "@material-ui/core/Grid";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import { Link } from "react-router-dom";
 
 const EquiposTorneo = props => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  function handleClick(event) {
-    setAnchorEl(event.currentTarget);
-  }
-
-  function handleClose() {
-    setAnchorEl(null);
-  }
-
   return (
     <Grid container>
       {props.listaEquipos.map(equipo => (
         <Grid key={equipo.id} item xs={12} md={4}>
           <Card className={props.cardStyle}>
             <CardHeader
-              action={
-                <IconButton
-                  aria-label="Jugadores"
-                  aria-controls="simple-menu"
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                >
-                  <MoreVertIcon />
-                </IconButton>
-              }
               title={equipo.nombre}
               subheader={equipo.descripcion}
             />
@@ -47,23 +25,14 @@ const EquiposTorneo = props => {
               title="Paella dish"
             />
             <CardActions disableSpacing>
-              <IconButton aria-label="Add to favorites">
-                <FavoriteIcon />
+              <IconButton component={ Link } to={{ pathname: `/estadisticas/equipo/${equipo.id}` }} aria-label="Add to favorites">
+                <RemoveRedEye />
               </IconButton>
               <IconButton aria-label="Share">
                 <ShareIcon />
               </IconButton>
             </CardActions>
           </Card>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>Estadísticas</MenuItem>
-          </Menu>
         </Grid>
       ))}
     </Grid>

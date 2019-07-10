@@ -35,9 +35,7 @@ const BottomNavigationApp = withRouter(({history}) => {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-      <IconButton onClick={() => history.goBack(-1)} aria-label="Delete" className={classes.margin} size="large">
-          <Undo fontSize="inherit" />
-        </IconButton>
+      <BottomNavigationAction onClick={() => history.goBack(-1)} className={classes.icon} label="Atras" showLabel = "true" value="atras" icon={<Undo />} />
       <BottomNavigationAction className={classes.icon} label="Mejores" value="mejores" icon={<RestoreIcon />} />
       <BottomNavigationAction className={classes.icon} label="Goleadores" value="estadisticas" icon={<FavoriteIcon />} />
       <BottomNavigationAction className={classes.icon} label="Nearby" value="nearby" icon={<LocationOnIcon />} />

@@ -5,6 +5,9 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { withRouter } from 'react-router-dom'
+import IconButton from '@material-ui/core/IconButton';
+import Undo from '@material-ui/icons/Undo';
 
 const useStyles = makeStyles(theme=>({
   root: {
@@ -15,10 +18,14 @@ const useStyles = makeStyles(theme=>({
   },
   icon:{
     color:  theme.palette.secondary.main,
-  }
+  },
+  margin: {
+    margin: theme.spacing(1),
+    background: theme.palette.primary.light,
+  },
 }));
 
-function BottomNavigationApp() {
+const BottomNavigationApp = withRouter(({history}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState('posiciones');
 
@@ -28,11 +35,14 @@ function BottomNavigationApp() {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+      <IconButton onClick={() => history.goBack(-1)} aria-label="Delete" className={classes.margin} size="large">
+          <Undo fontSize="inherit" />
+        </IconButton>
       <BottomNavigationAction className={classes.icon} label="Mejores" value="mejores" icon={<RestoreIcon />} />
       <BottomNavigationAction className={classes.icon} label="Goleadores" value="estadisticas" icon={<FavoriteIcon />} />
       <BottomNavigationAction className={classes.icon} label="Nearby" value="nearby" icon={<LocationOnIcon />} />
     </BottomNavigation>
   );
-}
+}) 
 
 export default BottomNavigationApp;

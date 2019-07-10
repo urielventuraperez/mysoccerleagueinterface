@@ -6,13 +6,17 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=>({
   root: {
     width: '100%',
     position: 'fixed',
     bottom: 0,
+    background: theme.palette.primary.light,
   },
-});
+  icon:{
+    color:  theme.palette.secondary.main,
+  }
+}));
 
 function BottomNavigationApp() {
   const classes = useStyles();
@@ -24,9 +28,9 @@ function BottomNavigationApp() {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-      <BottomNavigationAction label="Mejores" value="mejores" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Goleadores" value="estadisticas" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
+      <BottomNavigationAction className={classes.icon} label="Mejores" value="mejores" icon={<RestoreIcon />} />
+      <BottomNavigationAction className={classes.icon} label="Goleadores" value="estadisticas" icon={<FavoriteIcon />} />
+      <BottomNavigationAction className={classes.icon} label="Nearby" value="nearby" icon={<LocationOnIcon />} />
     </BottomNavigation>
   );
 }

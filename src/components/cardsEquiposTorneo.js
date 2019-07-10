@@ -13,7 +13,7 @@ const EquiposTorneo = props => {
   return (
     <Grid container>
       {props.listaEquipos.map(equipo => (
-        <Grid key={equipo.id} item xs={12} md={4}>
+        <Grid key={equipo.id} item xs={12} md={6}>
           <Card className={props.cardStyle}>
             <CardHeader
               title={equipo.nombre}

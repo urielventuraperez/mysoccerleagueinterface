@@ -5,8 +5,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { withRouter } from 'react-router-dom'
-import IconButton from '@material-ui/core/IconButton';
+import { withRouter } from 'react-router-dom';
 import Undo from '@material-ui/icons/Undo';
 
 const useStyles = makeStyles(theme=>({

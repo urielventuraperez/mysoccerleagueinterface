@@ -39,7 +39,7 @@ const validaciones = Yup.object({
   nombre: Yup.string()
     .required("El Nombre es requerido")
     .min(2, "Muy corto!")
-    .max(15, "Exageras!"),
+    .max(35, "Exageras!"),
   costo_inscripcion: Yup.number("Enter your email").positive(
     "Email is required"
   ),

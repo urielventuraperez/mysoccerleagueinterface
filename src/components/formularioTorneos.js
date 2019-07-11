@@ -6,6 +6,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import { connect } from "react-redux";
+import { agregarTorneo } from "../redux/actions/torneos";
 
 const FormularioTorneos = props => {
   const {
@@ -23,14 +25,26 @@ const FormularioTorneos = props => {
     setFieldTouched(name, true, false);
   };
 
+  const onSubmitValues = {
+    nombre,
+    categoria_id,
+    responsable_id,
+    costo_inscripcion
+  };
+
+  const handleAdd = (event) =>{
+    event.preventDefault();
+    props.agregarTorneo(onSubmitValues)
+   };
+
   return (
     <Paper className={props.paper}>
       <Typography variant="h4" component="h3">
         Torneos
       </Typography>
       <form
-        onSubmit={() => {
-          alert("submitted");
+        onSubmit={(e) => {
+          handleAdd(e)
         }}
         className={props.container}
         autoComplete="off"
@@ -125,4 +139,15 @@ const FormularioTorneos = props => {
   );
 };
 
-export default FormularioTorneos;
+const mapDispatchToProps = dispatch => {
+  return {
+    agregarTorneo: (torneo) => {
+      dispatch(agregarTorneo(torneo));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(FormularioTorneos);

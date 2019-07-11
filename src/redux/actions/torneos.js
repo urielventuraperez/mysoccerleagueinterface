@@ -4,6 +4,7 @@ import {
   VER_EQUIPOS_TORNEO,
   VER_CATEGORIAS,
   VER_RESPONSABLES,
+  AGREGAR_TORNEO
 } from "../action-types";
 import { API_URL } from "../../utils/configEnv";
 
@@ -21,10 +22,21 @@ export function verTorneos() {
   };
 }
 
+export function agregarTorneo(torneo) {
+  return function(dispatch) {
+    return fetch(API_URL + "/agregarTorneo", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(torneo),
+    })
+      .then(response => console.log('Success:', response));
+  };
+}
+
 export function verEquiposTorneos(torneoId) {
   return function(dispatch) {
     dispatch({ type: CARGAR_DATOS_TORNEO });
-    return fetch(API_URL+"/torneo/" + torneoId + "/equipos")
+    return fetch(API_URL + "/torneo/" + torneoId + "/equipos")
       .then(response => response.json())
       .then(json => {
         return dispatch({
@@ -39,7 +51,7 @@ export function verEquiposTorneos(torneoId) {
 export function verCategorias() {
   return function(dispatch) {
     dispatch({ type: CARGAR_DATOS_TORNEO });
-    return fetch(API_URL+"/verCategorias")
+    return fetch(API_URL + "/verCategorias")
       .then(response => response.json())
       .then(json => {
         return dispatch({
@@ -54,7 +66,7 @@ export function verCategorias() {
 export function verResponsables() {
   return function(dispatch) {
     dispatch({ type: CARGAR_DATOS_TORNEO });
-    return fetch(API_URL+"/responsables/torneo")
+    return fetch(API_URL + "/responsables/torneo")
       .then(response => response.json())
       .then(json => {
         return dispatch({

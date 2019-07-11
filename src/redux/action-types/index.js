@@ -7,6 +7,7 @@ export const AGREGAR_ARBITRO = "AGREGAR_ARBITRO";
 export const VER_ARBITROS = "VER_ARBITROS";
 
 //Torneos
+export const AGREGAR_TORNEO = "AGREGAR_TORNEO";
 export const VER_TORNEOS = "VER_TORNEOS";
 export const VER_EQUIPOS_TORNEO = "VER_EQUIPOS_TORNEO";
 export const VER_CATEGORIAS = "VER_CATEGORIAS";

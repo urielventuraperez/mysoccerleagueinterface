@@ -8,11 +8,19 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 
 const FormularioTorneos = props => {
-  const [values, setValues] = React.useState({
-    amount: ""
-  });
-  const handleChange = prop => event => {
-    setValues({ ...values, [prop]: event.target.value });
+  const {
+    values: { nombre, categoria_id, responsable_id, costo_inscripcion },
+    errors,
+    touched,
+    handleChange,
+    isValid,
+    setFieldTouched
+  } = props;
+
+  const change = (name, e) => {
+    e.persist();
+    handleChange(e);
+    setFieldTouched(name, true, false);
   };
 
   return (
@@ -20,32 +28,48 @@ const FormularioTorneos = props => {
       <Typography variant="h4" component="h3">
         Torneos
       </Typography>
-      <form className={props.container} noValidate autoComplete="off">
+      <form
+        onSubmit={() => {
+          alert("submitted");
+        }}
+        className={props.container}
+        autoComplete="off"
+      >
         <TextField
-          id="outlined-email-input"
+          id="nombre"
           label="Nombre *"
           className={props.textField}
+          value={nombre}
           type="text"
           name="nombre"
           margin="normal"
           variant="outlined"
+          onChange={change.bind(null, "nombre")}
+          helperText={touched.nombre ? errors.nombre : ""}
+          error={touched.nombre && Boolean(errors.nombre)}
         />
         <TextField
-          id="outlined-adornment-amount"
+          id="costo_inscripcion"
           className={props.textField}
+          value={costo_inscripcion}
           variant="outlined"
           label="Inscripcion"
           name="costo_inscripcion"
-          type="number"
-          pattern="[0-9]{0,5}"
+          helperText={touched.costo_inscripcion ? errors.costo_inscripcion : ""}
+          error={touched.costo_inscripcion && Boolean(errors.costo_inscripcion)}
           margin="normal"
-          onChange={handleChange("amount")}
+          onChange={change.bind(null, "costo_inscripcion")}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>
           }}
         />
         <TextField
-          id="outlined-select-currency"
+          id="categoria_id"
+          name="categoria_id"
+          value={categoria_id}
+          onChange={change.bind(null, "categoria_id")}
+          helperText={touched.categoria_id ? errors.categoria_id : ""}
+          error={touched.categoria_id && Boolean(errors.categoria_id)}
           select
           label="Categoria"
           className={props.textField}
@@ -54,22 +78,22 @@ const FormularioTorneos = props => {
               className: props.menu
             }
           }}
-          helperText="Selecciona la categoria"
           margin="normal"
           variant="outlined"
         >
           {props.categoriasTorneo.map(categoria => (
-            <MenuItem
-              key={categoria.id}
-              name="categoria_id"
-              value={categoria.id}
-            >
+            <MenuItem key={categoria.id} value={categoria.id}>
               {categoria.nombre}
             </MenuItem>
           ))}
         </TextField>
         <TextField
-          id="outlined-select-currency"
+          id="responsable_id"
+          name="responsable_id"
+          value={responsable_id}
+          onChange={change.bind(null, "responsable_id")}
+          helperText={touched.responsable_id ? errors.responsable_id : ""}
+          error={touched.responsable_id && Boolean(errors.responsable_id)}
           select
           label="Responsable"
           className={props.textField}
@@ -78,21 +102,22 @@ const FormularioTorneos = props => {
               className: props.menu
             }
           }}
-          helperText="Selecciona un responsable"
           margin="normal"
           variant="outlined"
         >
           {props.responsablesTorneo.map(responsable => (
-            <MenuItem
-              key={responsable.id}
-              name="responsable_id"
-              value={responsable.id}
-            >
+            <MenuItem key={responsable.id} value={responsable.id}>
               {responsable.nombre}
             </MenuItem>
           ))}
         </TextField>
-        <Fab color="secondary" aria-label="Add" className={props.fab}>
+        <Fab
+          disabled={!isValid}
+          type="submit"
+          color="secondary"
+          aria-label="Add"
+          className={props.fab}
+        >
           <AddIcon />
         </Fab>
       </form>

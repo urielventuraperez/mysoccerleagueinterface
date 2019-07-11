@@ -44,6 +44,13 @@ function ButtonAppBar() {
           <Button
             color="inherit"
             component={ Link }
+            to="/administracion"
+          >
+            Administracion
+          </Button>
+          <Button
+            color="inherit"
+            component={ Link }
             to="/torneos"
           >
             Torneos

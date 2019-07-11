@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import { verTorneos } from "../redux/actions/torneos";
 import Load from "../components/load";
 import CardTorneos from "../components/cardsTorneos";
-import Fade from '@material-ui/core/Fade';
+import SnackbarContent from "@material-ui/core/SnackbarContent";
+import Fade from "@material-ui/core/Fade";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   card: {
-    maxWidth: '100%'
+    maxWidth: "100%"
   },
   media: {
     height: 140
@@ -32,9 +33,25 @@ const Torneos = props => {
       {props.cargandoTorneo ? (
         <Load />
       ) : (
-        <Fade direction="up" in={!props.cargandoTorneo} mountOnEnter unmountOnExit>
-        <CardTorneos loop={props.torneos} card={classes.card} media={classes.media} />
-        </Fade> 
+        <Fade
+          direction="up"
+          in={!props.cargandoTorneo}
+          mountOnEnter
+          unmountOnExit
+        >
+          {props.torneos.error ? (
+            <SnackbarContent
+              className={classes.snackbar}
+              message={props.torneos.error}
+            />
+          ) : (
+            <CardTorneos
+              loop={props.torneos}
+              card={classes.card}
+              media={classes.media}
+            />
+          )}
+        </Fade>
       )}
     </Container>
   );

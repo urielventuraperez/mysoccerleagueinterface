@@ -4,13 +4,19 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { Formik } from "formik";
 import { connect } from "react-redux";
-import { verCategorias, verResponsables } from "../redux/actions/torneos";
+import {
+  verCategorias,
+  verResponsables,
+  agregarTorneo
+} from "../redux/actions/torneos";
 import FormularioTorneo from "../components/formularioTorneos";
 import * as Yup from "yup";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: theme.spacing(5),
+    marginBottom: theme.spacing(10)
   },
   paper: {
     padding: theme.spacing(2),
@@ -53,12 +59,13 @@ const Administracion = props => {
     props.verResponsables();
   }, []);
 
-  const valuesForm = {
+  const values = {
     nombre: "",
     categoria_id: "",
     responsable_id: "",
     costo_inscripcion: ""
   };
+
   const classes = useStyles();
 
   return (
@@ -67,10 +74,14 @@ const Administracion = props => {
         <Grid item xs={12}>
           <Paper className={classes.paper}>xs=12</Paper>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Formik
             validationSchema={validaciones}
-            initialValues={valuesForm}
+            initialValues={values}
+            onSubmit={(values, { resetForm }) => {
+              props.agregarTorneo(values);
+              resetForm("");
+            }}
             render={prop => (
               <FormularioTorneo
                 paper={classes.paper}
@@ -85,7 +96,7 @@ const Administracion = props => {
             )}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <Paper className={classes.paper}>xs=6</Paper>
         </Grid>
         <Grid item xs={3}>
@@ -120,6 +131,9 @@ const mapDispatchToProps = dispatch => {
     },
     verResponsables: () => {
       dispatch(verResponsables());
+    },
+    agregarTorneo: torneo => {
+      dispatch(agregarTorneo(torneo));
     }
   };
 };

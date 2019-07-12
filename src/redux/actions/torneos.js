@@ -3,8 +3,7 @@ import {
   CARGAR_DATOS_TORNEO,
   VER_EQUIPOS_TORNEO,
   VER_CATEGORIAS,
-  VER_RESPONSABLES,
-  AGREGAR_TORNEO
+  VER_RESPONSABLES
 } from "../action-types";
 import { API_URL } from "../../utils/configEnv";
 
@@ -23,7 +22,7 @@ export function verTorneos() {
 }
 
 export function agregarTorneo(torneo) {
-  return function(dispatch) {
+  return function() {
     return fetch(API_URL + "/agregarTorneo", {
       method: "post",
       headers: { "Content-Type": "application/json" },

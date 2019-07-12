@@ -49,10 +49,10 @@ const validaciones = Yup.object({
     .min(2, "Muy corto!")
     .max(35, "Exageras!"),
   costo_inscripcion: Yup.number("Enter your email").positive(
-    "Email is required"
+    "Añada el costo"
   ),
-  responsable_id: Yup.string().required("Enter your password"),
-  categoria_id: Yup.string().required("Enter your password")
+  responsable_id: Yup.string().required("agregue"),
+  categoria_id: Yup.string().required("agregue")
 });
 
 const Administracion = props => {
@@ -88,7 +88,6 @@ const Administracion = props => {
             render={prop => (
               <FormularioTorneo
                 paper={classes.paper}
-                container={classes.container}
                 textField={classes.textField}
                 menu={classes.menu}
                 fab={classes.fab}

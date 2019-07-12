@@ -65,7 +65,7 @@ const EquiposTorneo = props => {
           <Paper className={classes.paper}>
             {props.cargandoTorneo ? (
               <LinearProgress color="secondary" />
-            ) : props.equiposTorneo.status === "error" ? (
+            ) : props.equiposTorneo.error ? (
               <div>
                 <SnackbarContent
                   className={classes.snackbar}

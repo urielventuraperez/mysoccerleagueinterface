@@ -22,13 +22,21 @@ export function verTorneos() {
 }
 
 export function agregarTorneo(torneo) {
-  return function() {
+  return function(dispatch) {
     return fetch(API_URL + "/agregarTorneo", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(torneo),
+      body: JSON.stringify(torneo)
     })
-      .then(response => console.log('Success:', response));
+      .then(() =>
+        fetch(API_URL + "/verTorneos").then(response => response.json())
+      )
+      .then(json => {
+        return dispatch({
+          type: VER_TORNEOS,
+          payload: json
+        });
+      });
   };
 }
 

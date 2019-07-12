@@ -7,9 +7,11 @@ import { connect } from "react-redux";
 import {
   verCategorias,
   verResponsables,
-  agregarTorneo
+  agregarTorneo,
+  verTorneos
 } from "../redux/actions/torneos";
 import FormularioTorneo from "../components/formularioTorneos";
+import TablaTorneos from "../components/tablaTorneosAdministracion";
 import * as Yup from "yup";
 
 const useStyles = makeStyles(theme => ({
@@ -57,9 +59,10 @@ const Administracion = props => {
   useEffect(() => {
     props.verCategorias();
     props.verResponsables();
+    props.verTorneos();
   }, []);
 
-  const values = {
+  const valuesTournament = {
     nombre: "",
     categoria_id: "",
     responsable_id: "",
@@ -77,7 +80,7 @@ const Administracion = props => {
         <Grid item xs={4}>
           <Formik
             validationSchema={validaciones}
-            initialValues={values}
+            initialValues={valuesTournament}
             onSubmit={(values, { resetForm }) => {
               props.agregarTorneo(values);
               resetForm("");
@@ -97,7 +100,9 @@ const Administracion = props => {
           />
         </Grid>
         <Grid item xs={8}>
-          <Paper className={classes.paper}>xs=6</Paper>
+          <Paper className={classes.paper}>
+            <TablaTorneos torneos={props.torneos} />
+          </Paper>
         </Grid>
         <Grid item xs={3}>
           <Paper className={classes.paper}>xs=3</Paper>
@@ -119,6 +124,7 @@ const Administracion = props => {
 const mapStateToProps = state => {
   return {
     cargandoTorneo: state.torneos.cargandoTorneo,
+    torneos: state.torneos.torneos,
     categoriasTorneo: state.torneos.categoriasTorneo,
     responsablesTorneo: state.torneos.responsablesTorneo
   };
@@ -126,6 +132,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    verTorneos: () => {
+      dispatch(verTorneos());
+    },
     verCategorias: () => {
       dispatch(verCategorias());
     },

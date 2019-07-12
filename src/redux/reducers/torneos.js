@@ -1,6 +1,5 @@
 import {
   VER_TORNEOS,
-  AGREGAR_TORNEO,
   CARGAR_DATOS_TORNEO,
   VER_EQUIPOS_TORNEO,
   VER_CATEGORIAS,
@@ -9,7 +8,6 @@ import {
 
 const initialState = {
   torneos: [],
-  agregarTorneo: [],
   equiposTorneo: [],
   categoriasTorneo: [],
   cargandoTorneo: false,
@@ -51,8 +49,6 @@ function reducer(state = initialState, action) {
           responsablesTorneo: action.payload
         }
       );
-    case AGREGAR_TORNEO:
-      return {...state, agregarTorneo: action.payload }
     default:
       return state;
   }

@@ -26,8 +26,8 @@ const FormularioTorneos = props => {
 
   return (
     <Paper className={props.paper}>
-      <Typography variant="h4" component="h3">
-        Torneos
+      <Typography variant="h6" component="h5">
+        Agregar Torneo
       </Typography>
       <form
         className={props.container}

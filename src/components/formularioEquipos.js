@@ -67,7 +67,7 @@ const FormularioEquipos = props => {
           /*className={props.textField}*/
           value={inscripcion_abono}
           variant="outlined"
-          label="Inscripcion"
+          label="Inscripcion* abono"
           name="inscripcion_abono"
           helperText={touched.inscripcion_abono ? errors.inscripcion_abono : ""}
           error={touched.inscripcion_abono && Boolean(errors.inscripcion_abono)}

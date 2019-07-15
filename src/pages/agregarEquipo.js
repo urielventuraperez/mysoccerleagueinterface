@@ -5,6 +5,8 @@ import Grid from "@material-ui/core/Grid";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import FormularioEquipos from "../components/formularioEquipos";
+import { connect } from "react-redux";
+import { agregarEquipo } from "../redux/actions/equipos";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1)
-  },
+  }
 }));
 
 const validaciones = Yup.object({
@@ -27,7 +29,7 @@ const validaciones = Yup.object({
   inscripcion_abono: Yup.number().positive("Añada")
 });
 
-const Equipos = props => {
+const AdministrarEquipos = props => {
   const {
     match: { params }
   } = props;
@@ -53,12 +55,10 @@ const Equipos = props => {
               initialValues={valuesTeam}
               onSubmit={(values, { resetForm }) => {
                 console.log(values);
+                props.agregarEquipo(values, params.torneoId);
                 resetForm("");
               }}
-              render={
-                prop=>(
-                  <FormularioEquipos {...prop} />
-                )}
+              render={prop => <FormularioEquipos {...prop} />}
             />
           </Paper>
         </Grid>
@@ -82,4 +82,14 @@ const Equipos = props => {
   );
 };
 
-export default Equipos;
+const mapDispatchToProps = dispatch => {
+  return {
+    agregarEquipo: (equipo, torneoId) =>
+      dispatch(agregarEquipo(equipo, torneoId))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AdministrarEquipos);

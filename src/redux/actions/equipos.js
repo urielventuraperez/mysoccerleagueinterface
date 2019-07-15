@@ -1,4 +1,4 @@
-import { VER_EQUIPO, CARGAR_DATOS } from "../action-types";
+import { VER_EQUIPO, VER_EQUIPOS, CARGAR_DATOS } from "../action-types";
 import { API_URL } from "../../utils/configEnv";
 
 export function listarEquipo(equipoId) {
@@ -12,5 +12,25 @@ export function listarEquipo(equipoId) {
           payload: json
         });
       });
+  };
+}
+
+export function agregarEquipo(equipo, torneoId) {
+  return function() {
+    return fetch(API_URL + "/torneo/" + torneoId + "/agregarEquipo", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(equipo)
+    })
+      .then((response) =>
+      console.log(response)
+        //fetch(API_URL + "/verEquipos").then(response => response.json())
+      )
+      /*.then(json => {
+        return dispatch({
+          type: VER_EQUIPOS,
+          payload: json
+        });
+      })*/;
   };
 }

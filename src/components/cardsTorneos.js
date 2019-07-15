@@ -52,7 +52,7 @@ const CardTorneos = props => {
                     color="textSecondary"
                     component="p"
                   >
-                    {l.responsable_nombre} {l.responsable_apellido}
+                    Representante: {l.responsable_nombre} {l.responsable_apellido}
                   </Typography>
                 </CardContent>
               </CardActionArea>

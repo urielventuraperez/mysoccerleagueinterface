@@ -4,7 +4,6 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { ConnectedRouter } from "connected-react-router";
 import routes from "./routes/";
-import BottomNavigation from "./components/bottomNavigation";
 import TopNavigation from "./components/topNavigation";
 
 const App = ({ history }) => {
@@ -13,7 +12,6 @@ const App = ({ history }) => {
       <MuiThemeProvider theme={MyTheme}>
           <TopNavigation />
           {routes}
-          <BottomNavigation />
       </MuiThemeProvider>
     </ConnectedRouter>
   );

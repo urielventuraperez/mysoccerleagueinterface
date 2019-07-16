@@ -7,6 +7,7 @@ import EquiposTorneo from '../pages/equiposTorneo'
 import EstadisticasEquipo from '../pages/estadisticasEquipo'
 import Administracion from '../pages/administracion'
 import AgregarEquipo from '../pages/agregarEquipo'
+import AdministracionTorneo from '../pages/administracionTorneo'
 
 const routes = (
   <div>
@@ -18,6 +19,7 @@ const routes = (
       <Route path="/estadisticas/equipo/:equipoId" component={EstadisticasEquipo} />
       <Route path="/administracion" component={Administracion} />
       <Route path='/torneo/:torneoId/agregarEquipo' component={AgregarEquipo} />
+      <Route path='/administrar/torneo/:torneoId' component={AdministracionTorneo} />
     </Switch>
   </div>
 )

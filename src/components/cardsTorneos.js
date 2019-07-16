@@ -13,11 +13,9 @@ import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 
 const CardTorneos = props => {
-  
   const handleClick = event => {
     console.log(event.currentTarget);
   };
-
 
   return (
     <Grid container spacing={3}>
@@ -28,8 +26,8 @@ const CardTorneos = props => {
               <CardHeader
                 action={
                   <IconButton
-                  component={Link}
-                  to={{ pathname: `/torneo/${l.id}/agregarEquipo` }}
+                    component={Link}
+                    to={{ pathname: `/torneo/${l.id}/agregarEquipo` }}
                     onClick={event => handleClick(event)}
                     aria-label="Settings"
                   >
@@ -46,13 +44,13 @@ const CardTorneos = props => {
                   title="Contemplative Reptile"
                 />
                 <CardContent>
-                  {" "}
                   <Typography
                     variant="body2"
                     color="textSecondary"
                     component="p"
                   >
-                    Representante: {l.responsable_nombre} {l.responsable_apellido}
+                    Representante: {l.responsable_nombre}{" "}
+                    {l.responsable_apellido}
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -68,7 +66,20 @@ const CardTorneos = props => {
                   size="small"
                   color="primary"
                 >
-                  Learn More
+                  Estadisticas
+                </Button>
+                <Button
+                  component={Link}
+                  to={{
+                    pathname: `/administrar/torneo/${l.id}`,
+                    state: {
+                      cardNombre: l.nombre
+                    }
+                  }}
+                  size="small"
+                  color="primary"
+                >
+                  Administracion
                 </Button>
               </CardActions>
             </Card>

@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { ConnectedRouter } from "connected-react-router";
 import routes from "./routes/";
 import TopNavigation from "./components/topNavigation";
+import FooterComponent from "./components/footerComponent";
 
 const App = ({ history }) => {
   return (
@@ -12,6 +13,7 @@ const App = ({ history }) => {
       <MuiThemeProvider theme={MyTheme}>
           <TopNavigation />
           {routes}
+          <FooterComponent />
       </MuiThemeProvider>
     </ConnectedRouter>
   );

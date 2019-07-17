@@ -1,36 +1,36 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
+import Icon from "@material-ui/core/Icon";
 import MenuIcon from "@material-ui/icons/Menu";
+import MailIcon from "@material-ui/icons/Mail";
+import FirstPage from "@material-ui/icons/FirstPage";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
-import FirstPage from "@material-ui/icons/FirstPage";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
-import Slide from '@material-ui/core/Slide';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Slide from "@material-ui/core/Slide";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Divider from "@material-ui/core/Divider";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import { MenuUserItems } from "../utils/menuItems";
 import { withRouter } from "react-router-dom";
 import routes from "../routes";
 
 const drawerWidth = 240;
 
-
-const HideOnScroll = (props) => {
+const HideOnScroll = props => {
   const { children } = props;
   const trigger = useScrollTrigger({ target: window });
 
@@ -39,11 +39,11 @@ const HideOnScroll = (props) => {
       {children}
     </Slide>
   );
-}
+};
 
 HideOnScroll.propTypes = {
   children: PropTypes.node.isRequired,
-  window: PropTypes.func,
+  window: PropTypes.func
 };
 
 const useStyles = makeStyles(theme => ({
@@ -77,7 +77,8 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
+    background: theme.palette.primary.dark
   },
   drawerPaper: {
     width: drawerWidth
@@ -122,53 +123,52 @@ const ButtonAppBar = withRouter(({ history, ...props }) => {
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll {...props}>
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="Menu"
-            className={classes.menuButton}
-            onClick={() => history.goBack(-1)}
-            label="Atras"
-            showLabel={true}
-            value="atras"
-          >
-            <KeyboardArrowLeft />
-          </IconButton>
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open
+          })}
+        >
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="Menu"
+              className={classes.menuButton}
+              onClick={() => history.goBack(-1)}
+              label="Atras"
+              value="atras"
+            >
+              <KeyboardArrowLeft />
+            </IconButton>
 
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Menu"
-            component={Link}
-            to="/"
-          >
-            <FirstPage />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Button color="inherit" component={Link} to="/login">
-            Login
-          </Button>
-          <IconButton
-            color="inherit"
-            aria-label="Open drawer"
-            edge="end"
-            onClick={handleDrawerOpen}
-            className={clsx(open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+              component={Link}
+              to="/"
+            >
+              <FirstPage />
+            </IconButton>
+            <Typography variant="h6" className={classes.title}>
+              News
+            </Typography>
+            <Button color="inherit" component={Link} to="/login">
+              Login
+            </Button>
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              edge="end"
+              onClick={handleDrawerOpen}
+              className={clsx(open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
       </HideOnScroll>
       <Drawer
         className={classes.drawer}
@@ -190,12 +190,14 @@ const ButtonAppBar = withRouter(({ history, ...props }) => {
         </div>
         <Divider />
         <List>
-          <ListItem button color="inherit" component={Link} to="/torneos">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Torneos" />
-          </ListItem>
+          {MenuUserItems.map(menu => (
+            <ListItem key={menu.id} button color="inherit" component={Link} to={menu.link}>
+              <ListItemIcon>
+                <Icon>{menu.icono}</Icon>
+              </ListItemIcon>
+              <ListItemText primary={menu.nombre} />
+            </ListItem>
+          ))}
         </List>
         <Divider />
         <List>

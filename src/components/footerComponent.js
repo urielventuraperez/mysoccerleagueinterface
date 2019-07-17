@@ -26,7 +26,7 @@ const FooterContainer = () => {
   const classes = useStyles();
 
   return (
-    <React.Fragment  className={classes.root}>
+    <React.Fragment >
       <CssBaseline />
       <Container className={classes.container} maxWidth="xl">
         <Typography className={classes.linkContainer}>

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Icon from "@material-ui/core/Icon";
 import Card from "@material-ui/core/Card";
@@ -8,12 +9,26 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import DialogTorneos from "./dialogTorneos";
 
-const cardRepresentantes = props => {
+
+
+const CardRepresentantes = props => {
+
+    const [open, setOpen] = React.useState(false);
+  
+    function handleClickOpen() {
+      setOpen(true);
+    }
+  
+    const handleClose = value => {
+      setOpen(false);
+    };
+
   return (
     <Grid container spacing={3}>
       {props.responsablesTorneo.map(responsable => (
-        <Grid item md={3} xs={12}>
+        <Grid key={responsable.id} item md={3} xs={12}>
           <Card className={props.card}>
             <CardActionArea>
               <CardMedia
@@ -37,9 +52,10 @@ const cardRepresentantes = props => {
                 <Icon className={props.icon}>phone</Icon>
                 {responsable.celular}
               </Button>
-              <Button size="small" color="primary">
+              <Button onClick={handleClickOpen} size="small" color="primary">
                 <Icon className={props.icon}>security</Icon>Torneos
               </Button>
+              <DialogTorneos open={open} onClose={handleClose} />
             </CardActions>
           </Card>
         </Grid>
@@ -48,4 +64,4 @@ const cardRepresentantes = props => {
   );
 };
 
-export default cardRepresentantes;
+export default CardRepresentantes;

@@ -6,10 +6,10 @@ import { Formik } from "formik";
 import { connect } from "react-redux";
 import {
   verCategorias,
-  verResponsables,
   agregarTorneo,
   verTorneos
 } from "../redux/actions/torneos";
+import {   verResponsables } from "../redux/actions/responsables";
 import FormularioTorneo from "../components/formularioTorneos";
 import TablaTorneos from "../components/tablaTorneosAdministracion";
 import * as Yup from "yup";

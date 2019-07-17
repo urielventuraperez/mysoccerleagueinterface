@@ -13,9 +13,9 @@ export const MenuUserItems = [
     },
     {
         id:3,
-        nombre: "Representantes",
+        nombre: "Responsables",
         icono: "supervisor_account",
-        link: "/representantes",
+        link: "/responsables",
     }
 ];
 

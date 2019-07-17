@@ -1,4 +1,4 @@
-import { VER_EQUIPO, VER_EQUIPOS, CARGAR_DATOS } from "../action-types";
+import { VER_EQUIPO, CARGAR_DATOS } from "../action-types";
 import { API_URL } from "../../utils/configEnv";
 
 export function listarEquipo(equipoId) {

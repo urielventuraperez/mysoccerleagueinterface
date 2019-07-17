@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -12,6 +13,8 @@ import FirstPage from "@material-ui/icons/FirstPage";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
+import Slide from '@material-ui/core/Slide';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Divider from "@material-ui/core/Divider";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
@@ -26,9 +29,34 @@ import routes from "../routes";
 
 const drawerWidth = 240;
 
+
+const HideOnScroll = (props) => {
+  const { children } = props;
+  const trigger = useScrollTrigger({ target: window });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
+HideOnScroll.propTypes = {
+  children: PropTypes.node.isRequired,
+  window: PropTypes.func,
+};
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
+  },
+  show: {
+    transform: "translateY(0)",
+    transition: "transform .5s"
+  },
+  hide: {
+    transform: "translateY(-110%)",
+    transition: "transform .5s"
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -46,9 +74,6 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1
-  },
-  hide: {
-    display: "none"
   },
   drawer: {
     width: drawerWidth,
@@ -70,7 +95,7 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    }),
+    })
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
@@ -81,7 +106,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ButtonAppBar = withRouter(({ history }) => {
+const ButtonAppBar = withRouter(({ history, ...props }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -96,6 +121,7 @@ const ButtonAppBar = withRouter(({ history }) => {
   return (
     <React.Fragment>
       <CssBaseline />
+      <HideOnScroll {...props}>
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
@@ -143,6 +169,7 @@ const ButtonAppBar = withRouter(({ history }) => {
           </IconButton>
         </Toolbar>
       </AppBar>
+      </HideOnScroll>
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -187,14 +214,14 @@ const ButtonAppBar = withRouter(({ history }) => {
       </Drawer>
       <main
         className={clsx(classes.content, {
-          [classes.contentShift]: open,
+          [classes.contentShift]: open
         })}
       >
         <div className={classes.drawerHeader} />
-        { routes }
+        {routes}
       </main>
     </React.Fragment>
   );
-})
+});
 
 export default ButtonAppBar;

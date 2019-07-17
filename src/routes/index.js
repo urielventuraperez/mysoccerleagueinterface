@@ -13,7 +13,7 @@ const routes = (
   <div>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login}></Route>
+      <Route path="/login" component={Login} />
       <Route path="/torneos" component={Torneos} />
       <Route path="/torneo/:torneoId/equipos" component={EquiposTorneo} />
       <Route path="/estadisticas/equipo/:equipoId" component={EstadisticasEquipo} />

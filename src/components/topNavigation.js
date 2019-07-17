@@ -22,6 +22,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { withRouter } from "react-router-dom";
+import routes from "../routes";
 
 const drawerWidth = 240;
 
@@ -70,7 +71,6 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
-    marginRight: -drawerWidth
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
@@ -129,7 +129,7 @@ const ButtonAppBar = withRouter(({ history }) => {
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
-          <Button color="inherit" component={Link} to="login">
+          <Button color="inherit" component={Link} to="/login">
             Login
           </Button>
           <IconButton
@@ -185,6 +185,14 @@ const ButtonAppBar = withRouter(({ history }) => {
           </ListItem>
         </List>
       </Drawer>
+      <main
+        className={clsx(classes.content, {
+          [classes.contentShift]: open,
+        })}
+      >
+        <div className={classes.drawerHeader} />
+        { routes }
+      </main>
     </React.Fragment>
   );
 })

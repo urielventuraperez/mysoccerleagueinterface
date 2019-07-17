@@ -12,7 +12,6 @@ const App = ({ history }) => {
     <ConnectedRouter history={history}>
       <MuiThemeProvider theme={MyTheme}>
           <TopNavigation />
-          {routes}
           <FooterComponent />
       </MuiThemeProvider>
     </ConnectedRouter>

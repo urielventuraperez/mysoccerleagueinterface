@@ -1,14 +1,30 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import Container from "@material-ui/core/Container";
+import { makeStyles } from "@material-ui/core/styles";
 
-export default function SimpleContainer() {
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(0),
+    height: "80vh"
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    background: theme.palette.primary.dark,
+  },
+}));
+
+const HomeContainer = () => {
+  const classes = useStyles();
   return (
-      <Container maxWidth="xl">
-        <Typography
-          component="div"
-          style={{ backgroundColor: "#cfe8fc", height: "180vh" }}
-        />
-      </Container>
+    <Container className={classes.root} maxWidth="xl">
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>xs=12</Paper>
+        </Grid>
+    </Container>
   );
-}
+};
+
+export default HomeContainer;

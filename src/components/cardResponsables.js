@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Icon from "@material-ui/core/Icon";
 import Card from "@material-ui/core/Card";
@@ -10,10 +9,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import DialogTorneos from "./dialogTorneos";
+import { connect } from "react-redux";
+import { verTorneosResponsable } from "../redux/actions/responsables";
 
-const CardRepresentantes = props => {
+const CardResponsables = props => {
   const [open, setOpen] = React.useState(false);
-  const [idResponsable, setIdResponsable] = React.useState(0);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,7 +24,7 @@ const CardRepresentantes = props => {
   };
 
   const handleClickId = id => {
-    setIdResponsable(id);
+    props.verTorneosResponsable(id);
   };
 
   return (
@@ -66,7 +66,7 @@ const CardRepresentantes = props => {
               </Button>
               <DialogTorneos
                 key={responsable.id}
-                leader={idResponsable}
+                torneos={props.torneosResponsable}
                 open={open}
                 onClose={handleClose}
               />
@@ -78,4 +78,20 @@ const CardRepresentantes = props => {
   );
 };
 
-export default CardRepresentantes;
+const mapStateToProps = state => {
+  return {
+    torneosResponsable: state.responsables.torneosResponsable
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    verTorneosResponsable: responsableId =>
+      dispatch(verTorneosResponsable(responsableId))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CardResponsables);

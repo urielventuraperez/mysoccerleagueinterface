@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: theme.palette.secondary.light,
-    color: theme.palette.primary.main
+    color: theme.palette.secondary.main
   },
   drawerHeader: {
     display: "flex",
@@ -95,7 +95,7 @@ const useStyles = makeStyles(theme => ({
   drawerItem:{
     fontWeight: '900',
     '&:hover' :{
-      backgroundColor: theme.palette.secondary.main
+      backgroundColor: theme.palette.secondary.text
     }
   },
   content: {

@@ -11,19 +11,21 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import DialogTorneos from "./dialogTorneos";
 
-
-
 const CardRepresentantes = props => {
+  const [open, setOpen] = React.useState(false);
+  const [idResponsable, setIdResponsable] = React.useState(0);
 
-    const [open, setOpen] = React.useState(false);
-  
-    function handleClickOpen() {
-      setOpen(true);
-    }
-  
-    const handleClose = value => {
-      setOpen(false);
-    };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleClickId = id => {
+    setIdResponsable(id);
+  };
 
   return (
     <Grid container spacing={3}>
@@ -52,10 +54,22 @@ const CardRepresentantes = props => {
                 <Icon className={props.icon}>phone</Icon>
                 {responsable.celular}
               </Button>
-              <Button onClick={handleClickOpen} size="small" color="primary">
+              <Button
+                onClick={() => {
+                  handleClickOpen();
+                  handleClickId(responsable.id);
+                }}
+                size="small"
+                color="primary"
+              >
                 <Icon className={props.icon}>security</Icon>Torneos
               </Button>
-              <DialogTorneos open={open} onClose={handleClose} />
+              <DialogTorneos
+                key={responsable.id}
+                leader={idResponsable}
+                open={open}
+                onClose={handleClose}
+              />
             </CardActions>
           </Card>
         </Grid>

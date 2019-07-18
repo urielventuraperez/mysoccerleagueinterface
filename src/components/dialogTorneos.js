@@ -13,7 +13,7 @@ import AddIcon from '@material-ui/icons/Add';
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 const DialogTorneos = (props) => {
-    const { onClose, selectedValue, ...other } = props;
+    const { onClose, selectedValue, leader, ...other } = props;
   
     function handleClose() {
       onClose(selectedValue);
@@ -27,6 +27,7 @@ const DialogTorneos = (props) => {
       <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" {...other}>
         <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
         <List>
+            {leader}
           {emails.map(email => (
             <ListItem button onClick={() => handleListItemClick(email)} key={email}>
               <ListItemAvatar>

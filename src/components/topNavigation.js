@@ -62,7 +62,8 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    })
+    }),
+    color: theme.palette.primary.text
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -77,11 +78,12 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0,
-    background: theme.palette.primary.dark
+    flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
+    backgroundColor: theme.palette.secondary.light,
+    color: theme.palette.primary.main
   },
   drawerHeader: {
     display: "flex",
@@ -89,6 +91,12 @@ const useStyles = makeStyles(theme => ({
     padding: "0 8px",
     ...theme.mixins.toolbar,
     justifyContent: "flex-start"
+  },
+  drawerItem:{
+    fontWeight: '900',
+    '&:hover' :{
+      backgroundColor: theme.palette.secondary.main
+    }
   },
   content: {
     flexGrow: 1,
@@ -104,6 +112,12 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginRight: 0
+  },
+  icono: {
+    color: theme.palette.primary.dark
+  },
+  superUserIcon: {
+    color: theme.palette.secondary.dark
   }
 }));
 
@@ -182,18 +196,25 @@ const ButtonAppBar = withRouter(({ history, ...props }) => {
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
-              <ChevronLeftIcon />
+              <ChevronLeftIcon className={classes.icono} />
             ) : (
-              <ChevronRightIcon />
+              <ChevronRightIcon className={classes.icono} />
             )}
           </IconButton>
         </div>
         <Divider />
         <List>
           {MenuUserItems.map(menu => (
-            <ListItem key={menu.id} button color="inherit" component={Link} to={menu.link}>
+            <ListItem
+            className={classes.drawerItem}
+              key={menu.id}
+              button
+              color="inherit"
+              component={Link}
+              to={menu.link}
+            >
               <ListItemIcon>
-                <Icon>{menu.icono}</Icon>
+                <Icon className={classes.icono}>{menu.icono}</Icon>
               </ListItemIcon>
               <ListItemText primary={menu.nombre} />
             </ListItem>
@@ -207,7 +228,7 @@ const ButtonAppBar = withRouter(({ history, ...props }) => {
             component={Link}
             to="/administracion"
           >
-            <ListItemIcon>
+            <ListItemIcon className={classes.superUserIcon}>
               <MailIcon />
             </ListItemIcon>
             <ListItemText primary="Administración" />

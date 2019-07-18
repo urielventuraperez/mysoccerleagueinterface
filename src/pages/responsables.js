@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 345
   },
   icon: {
-    color: theme.palette.secondary.main,
+    color: theme.palette.secondary.dark,
     fontSize: 12
   }
 }));

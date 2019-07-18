@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
   linkContainer: {
     padding: theme.spacing(4),
-    background: theme.palette.secondary.dark,
+    background: theme.palette.primary.dark,
     height: "15vh",
   },
   link: {

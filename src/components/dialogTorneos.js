@@ -7,6 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import BubbleChart from "@material-ui/icons/BubbleChart";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
+import { Link } from "react-router-dom";
 
 const DialogTorneos = props => {
   const { onClose, selectedValue, leader, ...other } = props;
@@ -26,11 +27,18 @@ const DialogTorneos = props => {
         {props.torneos.map(torneo => (
           <ListItem
             button
+            component={Link}
+            to={{
+              pathname: `/torneo/${torneo.id}/equipos`,
+              state: {
+                cardNombre: torneo.nombre
+              }
+            }}
             onClick={() => handleListItemClick(torneo)}
             key={torneo.id}
           >
             <ListItemAvatar>
-                <BubbleChart />
+              <BubbleChart />
             </ListItemAvatar>
             <ListItemText primary={torneo.nombre} />
           </ListItem>

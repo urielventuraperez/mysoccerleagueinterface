@@ -15,10 +15,16 @@ const useStyles = makeStyles(theme => ({
   },
 
   card: {
-    maxWidth: "100%"
+    maxWidth: "100%",
+    "&:hover": {
+      boxShadow: theme.shadows[2],
+    }
   },
   media: {
     height: 140
+  },
+  paper:{
+    boxShadow: theme.shadows[1],
   }
 }));
 
@@ -49,6 +55,7 @@ const Torneos = props => {
               loop={props.torneos}
               card={classes.card}
               media={classes.media}
+              paper={classes.paper}
             />
           )}
         </Fade>

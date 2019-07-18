@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 const Representantes = props => {
   const classes = useStyles();
 
-  useEffect((idResponsable) => {
+  useEffect(() => {
     props.verResponsables();
   }, []);
 

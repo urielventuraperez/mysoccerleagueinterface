@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AdministracionTorneo = props => {
+const AdministracionTorneoArbitros = props => {
   const classes = useStyles();
 
   const {
@@ -36,7 +36,7 @@ const AdministracionTorneo = props => {
         <Grid className={classes.container} container spacing={3}>
           <Grid item xs={6}>
             <Paper className={classes.paper}>
-              <Typography>Hello, {params.torneoId}</Typography>
+              <Typography>Arbitros Torneo: {params.torneoId}</Typography>
             </Paper>
           </Grid>
           <Grid item xs={6}>
@@ -48,4 +48,4 @@ const AdministracionTorneo = props => {
   );
 };
 
-export default AdministracionTorneo;
+export default AdministracionTorneoArbitros;

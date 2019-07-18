@@ -9,10 +9,28 @@ import CardMedia from "@material-ui/core/CardMedia";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
+import { MenuTournamentManagement } from "../utils/menuItems";
 
 const CardTorneos = props => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [idTorneo, setIdTorneo] = React.useState(0);
+
+  function handleClickListItem(event) {
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleIdTorneo(id) {
+    setIdTorneo(id);
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
+
   const handleClick = event => {
     console.log(event.currentTarget);
   };
@@ -69,18 +87,38 @@ const CardTorneos = props => {
                   Estadisticas
                 </Button>
                 <Button
-                  component={Link}
-                  to={{
-                    pathname: `/administrar/torneo/${l.id}`,
-                    state: {
-                      cardNombre: l.nombre
-                    }
+                  onClick={event => {
+                    handleClickListItem(event);
+                    handleIdTorneo(l.id);
                   }}
                   size="small"
                   color="primary"
                 >
                   Administracion
                 </Button>
+                <Menu
+                  id="lock-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                  className={props.paper}
+                >
+                  {MenuTournamentManagement.map(menu => (
+                    <MenuItem
+                      key={menu.id}
+                      component={Link}
+                      to={{
+                        pathname: menu.link+idTorneo,
+                        state: {
+                          cardNombre: l.nombre
+                        }
+                      }}
+                    >
+                      {menu.nombre}
+                    </MenuItem>
+                  ))}
+                </Menu>
               </CardActions>
             </Card>
           </Grid>

@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    responsablesTorneo: state.torneos.responsablesTorneo
+    responsablesTorneo: state.responsables.responsablesTorneo
   };
 };
 

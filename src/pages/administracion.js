@@ -125,7 +125,7 @@ const mapStateToProps = state => {
     cargandoTorneo: state.torneos.cargandoTorneo,
     torneos: state.torneos.torneos,
     categoriasTorneo: state.torneos.categoriasTorneo,
-    responsablesTorneo: state.torneos.responsablesTorneo
+    responsablesTorneo: state.responsables.responsablesTorneo
   };
 };
 

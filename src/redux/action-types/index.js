@@ -15,5 +15,6 @@ export const VER_CATEGORIAS = "VER_CATEGORIAS";
 export const VER_EQUIPO = "VER_EQUIPO";
 export const VER_EQUIPOS = "VER_EQUIPOS";
 
-//Representantes
+//Responsables
 export const VER_RESPONSABLES = "VER_RESPONSABLES";
+export const VER_TORNEOS_RESPONSABLE = "VER_TORNEOS_RESPONSABLE";

@@ -1,5 +1,5 @@
 import {
-    CARGAR_DATOS_TORNEO,
+    CARGAR_DATOS,
     VER_RESPONSABLES
   } from "../action-types";
   import { API_URL } from "../../utils/configEnv";
@@ -7,7 +7,7 @@ import {
   //Responsables
   export function verResponsables() {
     return function(dispatch) {
-      dispatch({ type: CARGAR_DATOS_TORNEO });
+      dispatch({ type: CARGAR_DATOS });
       return fetch(API_URL + "/responsables/torneo")
         .then(response => response.json())
         .then(json => {

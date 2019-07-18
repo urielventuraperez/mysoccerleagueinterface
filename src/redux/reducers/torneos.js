@@ -2,8 +2,7 @@ import {
   VER_TORNEOS,
   CARGAR_DATOS_TORNEO,
   VER_EQUIPOS_TORNEO,
-  VER_CATEGORIAS,
-  VER_RESPONSABLES
+  VER_CATEGORIAS
 } from "../action-types";
 
 const initialState = {
@@ -37,16 +36,6 @@ function reducer(state = initialState, action) {
         { ...state, cargandoTorneo: false },
         {
           categoriasTorneo: action.payload
-        }
-      );
-    case VER_RESPONSABLES:
-      return Object.assign(
-        {
-          ...state,
-          cargandoTorneo: false
-        },
-        {
-          responsablesTorneo: action.payload
         }
       );
     default:

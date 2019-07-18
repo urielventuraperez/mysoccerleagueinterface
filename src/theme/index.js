@@ -11,16 +11,13 @@ const MyTheme = createMuiTheme({
     },
     secondary: {
       light: "#F2F2F2",
-      main: "#0D0D0C",
+      main: "#F28DA8",
       dark: "#ff8078",
       text: "#D9D9D9",
       contrastText: "#40403E"
     },
     background: {
       paper: "#F2F2F2"
-      //main: "#57F2D6",
-      //contrast: "#6695F2",
-      //danger: "#F28DA8"
     },
     text: {
       primary: "#0D0D0C",

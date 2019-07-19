@@ -35,7 +35,6 @@ const CardArbitros = props => {
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      {console.log(arbitrosTorneo)}
       {arbitrosTorneo.length ? (
         arbitrosTorneo.map(arbitro => (
           <div key={arbitro.id}>

@@ -8,6 +8,33 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Checkbox from "@material-ui/core/Checkbox";
 import Avatar from "@material-ui/core/Avatar";
 import Badge from "@material-ui/core/Badge";
+import FormAgregarArbitro from "./formularioArbitro";
+import { Formik } from "formik";
+import * as Yup from "yup";
+
+const validaciones = Yup.object({
+  nombre: Yup.string()
+    .required("El Nombre es requerido")
+    .min(4, "No creo que su nombre sea corto...")
+    .max(25, "Vaya nombre largo!"),
+  apellido: Yup.string()
+    .required("El Apellido es requerido")
+    .min(3, "Apellido maya no es :/")
+    .max(25, "No quieres poner su CURP? :D"),
+  alias: Yup.string()
+    .min(2, "Alias corto")
+    .max(20, "Te pasaste bato!"),
+  celular: Yup.string()
+    .min(10, "Minimo 10 digitos")
+    .max(20, "Tranquilo viejo, es un numero de celular")
+});
+
+const formArbitro = {
+  nombre: "",
+  apellido: "",
+  alias: "",
+  celular: ""
+};
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,8 +46,8 @@ const useStyles = makeStyles(theme => ({
   },
   margin: {
     margin: theme.spacing(2),
-    marginRight: theme.spacing(3),
-  },
+    marginRight: theme.spacing(3)
+  }
 }));
 
 const CheckboxListArbitros = props => {
@@ -75,6 +102,14 @@ const CheckboxListArbitros = props => {
           </ListItem>
         );
       })}
+      <Formik
+        validationSchema={validaciones}
+        initialValues={formArbitro}
+        onSubmit={ (values) => {
+          console.log(JSON.stringify(values))
+        } }
+        render={prop => <FormAgregarArbitro {...prop} />}
+      />
     </List>
   );
 };

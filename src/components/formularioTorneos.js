@@ -122,7 +122,7 @@ const FormularioTorneos = props => {
           className={props.fab}
         >
           <AddIcon />
-        </Fab>        
+        </Fab>
       </form>
     </Paper>
   );

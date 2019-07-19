@@ -50,7 +50,7 @@ const AdministracionTorneoArbitros = props => {
               <Typography component="h4" variant={"h5"}>
                 Arbitros Torneo:
               </Typography>
-              <CardArbitros arbitrosTorneo={props.arbitrosTorneo}  />
+              <CardArbitros arbitrosTorneo={props.arbitrosTorneo} />
             </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
@@ -61,7 +61,7 @@ const AdministracionTorneoArbitros = props => {
               {props.cargando ? (
                 <CircularProgress disableShrink />
               ) : (
-                <ListaArbitros arbitros={props.arbitros} />
+                  <ListaArbitros arbitros={props.arbitros} />
               )}
             </Paper>
           </Grid>
@@ -75,7 +75,7 @@ const mapStateToProps = state => {
   return {
     cargando: state.arbitros.cargando,
     arbitros: state.arbitros.arbitros,
-    arbitrosTorneo: state.arbitros.arbitrosTorneo,
+    arbitrosTorneo: state.arbitros.arbitrosTorneo
   };
 };
 

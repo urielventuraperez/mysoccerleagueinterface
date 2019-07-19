@@ -1,7 +1,7 @@
 export const MenuUserItems = [
   {
     id: 1,
-    nombre: "Torneo",
+    nombre: "Torneos",
     icono: "star",
     link: "/torneos"
   },
@@ -22,12 +22,14 @@ export const MenuUserItems = [
 export const MenuTournamentManagement = [
   {
     id: 1,
-    nombre: "Equipos",
-    link: "/administrar/torneo/equipos/"
+    nombre: "Arbitros",
+    link: "/administrar/torneo/arbitros/",
+    icono: "supervised_user_circle",
   },
   {
     id: 2,
-    nombre: "Arbitros",
-    link: "/administrar/torneo/arbitros/"
-  }
+    nombre: "Equipos",
+    link: "/administrar/torneo/equipos/",
+    icono: "group_work",
+  },
 ];

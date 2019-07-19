@@ -33,6 +33,7 @@ const AdministracionTorneoEquipos = props => {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
+        {props.location.state.cardNombre}
         <Grid className={classes.container} container spacing={3}>
           <Grid item xs={6}>
             <Paper className={classes.paper}>

@@ -11,20 +11,26 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import Typography from "@material-ui/core/Typography";
+import Chip from "@material-ui/core/Chip";
+import Avatar from '@material-ui/core/Avatar';
+import Icon from '@material-ui/core/Icon';
+import FaceIcon from '@material-ui/icons/Face';
+import Fade from "@material-ui/core/Fade";
 import { Link } from "react-router-dom";
 import { MenuTournamentManagement } from "../utils/menuItems";
 
 const CardTorneos = props => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [idTorneo, setIdTorneo] = React.useState(0);
+  const [nombreTorneo, setNombreTorneo] = React.useState("");
 
   function handleClickListItem(event) {
     setAnchorEl(event.currentTarget);
   }
 
-  function handleIdTorneo(id) {
+  function handleIdTorneo(id, nombre) {
     setIdTorneo(id);
+    setNombreTorneo(nombre);
   }
 
   function handleClose() {
@@ -62,14 +68,14 @@ const CardTorneos = props => {
                   title="Contemplative Reptile"
                 />
                 <CardContent>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Representante: {l.responsable_nombre}{" "}
-                    {l.responsable_apellido}
-                  </Typography>
+                  <Chip
+                    avatar={
+                      <Avatar>
+                        <FaceIcon />
+                      </Avatar>
+                    }
+                    label={l.responsable_nombre}
+                  />
                 </CardContent>
               </CardActionArea>
               <CardActions>
@@ -89,7 +95,7 @@ const CardTorneos = props => {
                 <Button
                   onClick={event => {
                     handleClickListItem(event);
-                    handleIdTorneo(l.id);
+                    handleIdTorneo(l.id, l.nombre);
                   }}
                   size="small"
                   color="primary"
@@ -103,18 +109,21 @@ const CardTorneos = props => {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                   className={props.paper}
+                  TransitionComponent={Fade}
                 >
                   {MenuTournamentManagement.map(menu => (
                     <MenuItem
                       key={menu.id}
                       component={Link}
                       to={{
-                        pathname: menu.link+idTorneo,
+                        pathname: menu.link + idTorneo,
                         state: {
-                          cardNombre: l.nombre
+                          cardNombre: nombreTorneo
                         }
                       }}
-                    >
+                    ><Icon>
+                      {menu.icono}
+                    </Icon>
                       {menu.nombre}
                     </MenuItem>
                   ))}

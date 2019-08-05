@@ -7,17 +7,19 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import LastPage from "@material-ui/icons/LastPage";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Chip from "@material-ui/core/Chip";
-import Avatar from '@material-ui/core/Avatar';
-import Icon from '@material-ui/core/Icon';
-import FaceIcon from '@material-ui/icons/Face';
+import Avatar from "@material-ui/core/Avatar";
+import Icon from "@material-ui/core/Icon";
+import FaceIcon from "@material-ui/icons/Face";
 import Fade from "@material-ui/core/Fade";
 import { Link } from "react-router-dom";
 import { MenuTournamentManagement } from "../utils/menuItems";
+import Cup from "../assets/world-cup.png";
 
 const CardTorneos = props => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -48,6 +50,9 @@ const CardTorneos = props => {
           <Grid key={l.id} item xs={12} md={12}>
             <Card className={props.card}>
               <CardHeader
+                avatar={
+                  <Avatar src={Cup} />
+                }
                 action={
                   <IconButton
                     component={Link}
@@ -89,8 +94,8 @@ const CardTorneos = props => {
                   }}
                   size="small"
                   color="primary"
-                >
-                  Estadisticas
+                ><Icon>last_page</Icon>
+                  Ver liga
                 </Button>
                 <Button
                   onClick={event => {
@@ -121,9 +126,8 @@ const CardTorneos = props => {
                           cardNombre: nombreTorneo
                         }
                       }}
-                    ><Icon>
-                      {menu.icono}
-                    </Icon>
+                    >
+                      <Icon>{menu.icono}</Icon>
                       {menu.nombre}
                     </MenuItem>
                   ))}
